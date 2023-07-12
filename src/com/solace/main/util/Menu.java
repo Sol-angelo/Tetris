@@ -1172,7 +1172,7 @@ public class Menu extends MouseAdapter
             g.fillRect(210, 250, 200, 64);
             g.fillRect(210, 350, 200, 64);
             g.fillRect(50, 350, 64, 64);
-            g.setFont(fnt5);
+            g.setFont(fnt);
             g.setColor(Color.white);
             g.drawString("Tetris", 250, 75);
             g.setFont(fnt2);
