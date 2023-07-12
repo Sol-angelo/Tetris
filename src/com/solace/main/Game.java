@@ -16,6 +16,8 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Random;
 
 public class Game extends Canvas implements Runnable
@@ -77,14 +79,17 @@ public class Game extends Canvas implements Runnable
     }
 
     public void playSound(String name) {
-        String soundFile = "res/assets/sound/"+name+".wav";
+       URL url = this.getClass().getResource("/assets/sound/"+name+".wav");
+        //String soundFile = "res/assets/sound/"+name+".wav";
         try {
-            File f = new File(soundFile);
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioIn);
-            clip.start();
-            clip.loop(999999999);
+            //File f = new File(file);
+            if (url != null) {
+                AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioIn);
+                clip.start();
+                clip.loop(999999999);
+            }
         } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
             throw new RuntimeException(e);
         }
